@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opacity Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding-top: 50px; /* Adjust this value to move content down */
+            text-align: center;
+        }
+        .name {
+            opacity: 0.3;
+            cursor: pointer;
+            margin: 10px;
+            transition: opacity 0.3s;
+        }
+        .name.active {
+            opacity: 1;
+        }
+        .control-button {
+            margin: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .gif {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="names-container">
+        <div class="name">ميس هند</div>
+        <div class="name">استاذ ديفيد</div>
+        <div class="name">استاذ بافلي</div>
+        <div class="name">ميس جولين</div>
+    </div>
+    <button id="control-button" class="control-button">شلبي</button>
+    <img id="gif" class="gif" src="D:\html3\200w.gif" alt="GIF">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const names = document.querySelectorAll('.name');
+            const controlButton = document.getElementById('control-button');
+            const gif = document.getElementById('gif');
+
+            names.forEach(name => {
+                name.addEventListener('click', function() {
+                    name.classList.toggle('active');
+                });
+            });
+
+            controlButton.addEventListener('click', function() {
+                const allActive = Array.from(names).every(name => name.classList.contains('active'));
+                names.forEach(name => {
+                    if (allActive) {
+                        name.classList.remove('active');
+                    } else {
+                        name.classList.add('active');
+                    }
+                });
+                gif.style.display = gif.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>
